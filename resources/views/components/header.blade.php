@@ -1,4 +1,4 @@
-<div class="flex items-center flex-col justify-center pt-14 pb-7 gap-3">
+<div class="flex items-center flex-col justify-center pt-12 pb-7 gap-3">
     <h2 class="font-bold text-[46px] text-center">Des <span class="text-primary">Services à Domicile</span> <br> à Portée
         de Main
     </h2>

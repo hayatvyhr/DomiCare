@@ -3,7 +3,7 @@
 
 
     <x-navbar>
-        <x-header></x-header>
+        <x-header />
         <div class="mx-9 flex items-center justify-center gap-8">
             @foreach ($categories as $category)
                 <x-category-item :category="$category" />

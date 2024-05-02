@@ -29,7 +29,7 @@ class UserController extends Controller
     public function logout()
     {
         auth()->logout();
-        return redirect('/')->with('success', 'You are now logged out.');
+        return redirect('/')->with('success', 'Vous êtes maintenant déconnecté.');
     }
 
     public function showIndexPage()
@@ -46,9 +46,9 @@ class UserController extends Controller
 
         if (auth()->attempt(['username' => $incomingFields['loginusername'], 'password' => $incomingFields['loginpassword']])) {
             $request->session()->regenerate();
-            return redirect('/')->with('success', 'You have successfully logged in.');
+            return redirect('/')->with('success', 'Vous vous êtes connecté avec succès.');
         } else {
-            return redirect('/')->with('failure', 'Invalid login.');
+            return redirect('/')->with('failure', 'Connexion invalide.');
         }
     }
 
@@ -82,6 +82,6 @@ class UserController extends Controller
         }
 
         auth()->login($user);
-        return redirect('/')->with('success', 'Thank you for creating an account.');
+        return redirect('/')->with('success', 'Merci d\'avoir créé un compte.');
     }
 }

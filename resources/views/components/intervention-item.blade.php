@@ -10,6 +10,6 @@
         <h2>{{ $intervention->description() }}</h2>
         <button
             class="bg-primary text-white text-sm leading-6 font-medium py-2 px-3 rounded-xl hover:bg-[#7C3AED] transition mt-3">Voir
-            offres</button>
+            Offres</button>
     </div>
 </div>

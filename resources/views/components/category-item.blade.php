@@ -3,3 +3,5 @@
         <img src="/categories/{{ $category->icon() }}" alt="icon" width="45" height="45">
         <h2 class="font-medium text-[{{ $category->color() }}]">{{ $category->nom() }}</h2>
     </div>
+
+    {{-- {{ $category->color() }} --}}
