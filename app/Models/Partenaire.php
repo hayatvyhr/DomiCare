@@ -21,5 +21,11 @@ class Partenaire extends Model
         'email',
         'telephone',
         'ville',
+        'image'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

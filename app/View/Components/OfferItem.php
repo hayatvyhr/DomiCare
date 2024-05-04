@@ -6,13 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class CategoryItem extends Component
+class OfferItem extends Component
 {
-    public $category;
-
-    public function __construct($category)
+    /**
+     * Create a new component instance.
+     */
+    public function __construct()
     {
-        $this->category = $category;
+        //
     }
 
     /**
@@ -20,6 +21,6 @@ class CategoryItem extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.index.category-item');
+        return view('components.offer-item');
     }
 }

@@ -11,10 +11,6 @@ class Intervention extends Model
 
     protected $table = 'interventions';
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class, 'id_categorie');
-    }
     public function nom()
     {
         return $this->nom;
@@ -28,5 +24,13 @@ class Intervention extends Model
     public function image()
     {
         return $this->image;
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'id_categorie');
+    }
+    public function services()
+    {
+        return $this->hasMany(Service::class, 'id_intervention');
     }
 }

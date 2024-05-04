@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\User;
 use App\Models\Client;
-use App\Models\Intervention;
+use App\Models\Category;
 use App\Models\Partenaire;
+use App\Models\Intervention;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Intervention\Image\ImageManager;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class UserController extends Controller
 {
@@ -16,14 +19,6 @@ class UserController extends Controller
     public function showSignupFrom()
     {
         return view('signup');
-    }
-
-    public function profile(User $user)
-    {
-        return view('profile-posts', [
-            'username' => $user->username, 'posts' => $user->posts()->latest()->get(),
-            'postsCount' => $user->posts()->count(),
-        ]);
     }
 
     public function logout()
@@ -36,6 +31,8 @@ class UserController extends Controller
     {
         return view('index', ['categories' => Category::all(), 'interventions' => Intervention::all()]);
     }
+
+
 
     public function login(Request $request)
     {
@@ -70,15 +67,34 @@ class UserController extends Controller
             'age' => 'required',
             'telephone' => 'required',
             'ville' => 'required',
-            'email' => ['required', 'email', Rule::unique('client', 'email'), Rule::unique('partenaire', 'email')]
+            'email' => ['required', 'email', Rule::unique('client', 'email'), Rule::unique('partenaire', 'email')],
         ]);
 
         $user = User::create($incomingFields1);
 
+        $request->validate([
+            'image' => 'image'
+        ]);
+
+        $filename = 'default_user.jpg';
+
+        if ($request->hasFile('image')) {
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($request->file('image'));
+            $imgData = $image->cover(800, 800)->toJpeg();
+            $filename = $incomingFields1['username'] . '.jpg';
+        }
+
         if ($user->user_type == 'client') {
-            $client = Client::create(['id_user' => $user->id_user, ...$incomingFields2]);
+            Client::create(['id_user' => $user->id_user, ...$incomingFields2, 'image' => $filename]);
+            if ($request->hasFile('image')) {
+                Storage::put("public/clients/" . $filename, $imgData);
+            }
         } elseif ($user->user_type == 'partenaire') {
-            $partenaire = Partenaire::create(['id_user' => $user->id_user, ...$incomingFields2]);
+            Partenaire::create(['id_user' => $user->id_user, ...$incomingFields2, 'image' => $filename]);
+            if ($request->hasFile('image')) {
+                Storage::put("public/partenaires/" . $filename, $imgData);
+            }
         }
 
         auth()->login($user);

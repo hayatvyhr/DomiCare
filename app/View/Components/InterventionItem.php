@@ -20,6 +20,6 @@ class InterventionItem extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.intervention-item');
+        return view('components.index.intervention-item');
     }
 }

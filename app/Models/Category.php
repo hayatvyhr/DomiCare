@@ -25,4 +25,9 @@ class Category extends Model
     {
         return $this->color;
     }
+
+    public function interventions()
+    {
+        return $this->hasMany(Intervention::class, 'id_categorie');
+    }
 }

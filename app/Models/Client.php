@@ -22,5 +22,16 @@ class Client extends Model
         'email',
         'telephone',
         'ville',
+        'image'
     ];
+
+    public function image()
+    {
+        return $this->image;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }
