@@ -10,6 +10,8 @@ class Service extends Model
     use HasFactory;
     protected $table = 'service';
 
+    protected $primaryKey = 'id_service';
+
     public function intervention()
     {
         return $this->belongsTo(Intervention::class, 'id_intervention');
@@ -17,5 +19,10 @@ class Service extends Model
     public function partenaire()
     {
         return $this->belongsTo(Partenaire::class, 'id_partenaire');
+    }
+
+    public function commentaires()
+    {
+        return $this->hasMany(Commentaire::class, 'id_service');
     }
 }

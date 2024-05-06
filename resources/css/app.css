@@ -10,3 +10,61 @@
         font-style: normal;
     }
 }
+
+@layer utilities {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+
+    /** customized scrollbar */
+    .scrollbar::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    .scrollbar::-webkit-scrollbar-track {
+        background: #d3d3d3;
+    }
+
+    .scrollbar::-webkit-scrollbar-thumb {
+        /* background: #888; */
+        background: #7f57f1;
+    }
+
+    .scrollbar::-webkit-scrollbar-thumb:hover {
+        /* background: #555; */
+        background: #7c3aed;
+    }
+}
+
+.remove-scrolling {
+    height: 100%;
+    overflow: hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #d3d3d3;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    /* background: #888; */
+    background: #7f57f1;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    /* background: #555; */
+    background: #7c3aed;
+}

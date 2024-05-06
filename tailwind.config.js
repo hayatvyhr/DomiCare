@@ -20,7 +20,7 @@ export default {
 
         extend: {
             screens: {
-                md: "850px",
+                md: "860px",
                 lg: "1120px",
             },
             colors: {

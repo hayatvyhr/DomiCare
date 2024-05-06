@@ -10,8 +10,6 @@ class ServiceController extends Controller
 {
     public function showService(Category $category, Intervention $intervention, Request $request)
     {
-        // $services = $intervention->services()->where('ville', '=', 'Tetouan')->get();
-
         if ($request['ville'] != "" && $request['ville'] != "all") {
             $services = $intervention->services()->where('ville', '=', $request['ville'])->get();
         } else {

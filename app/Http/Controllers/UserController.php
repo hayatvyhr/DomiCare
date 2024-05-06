@@ -43,9 +43,9 @@ class UserController extends Controller
 
         if (auth()->attempt(['username' => $incomingFields['loginusername'], 'password' => $incomingFields['loginpassword']])) {
             $request->session()->regenerate();
-            return redirect('/')->with('success', 'Vous vous êtes connecté avec succès.');
+            return redirect()->back()->with('success', 'Vous vous êtes connecté avec succès.');
         } else {
-            return redirect('/')->with('failure', 'Connexion invalide.');
+            return redirect()->back()->with('failure', 'Connexion invalide.');
         }
     }
 
