@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-    <p class="mt-3 px-[5px] overflow-y-scroll scrollbar">
+    <p class="mt-3 px-[5px] overflow-y-auto scrollbar">
         {{ $commentaire->commentaire }}
     </p>
 </div>

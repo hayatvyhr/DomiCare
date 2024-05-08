@@ -25,4 +25,9 @@ class Service extends Model
     {
         return $this->hasMany(Commentaire::class, 'id_service');
     }
+
+    public function demandes()
+    {
+        return $this->hasMany(Demande::class, 'id_service');
+    }
 }

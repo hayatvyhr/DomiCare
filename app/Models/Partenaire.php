@@ -28,4 +28,9 @@ class Partenaire extends Model
     {
         return $this->belongsTo(User::class, 'id_user');
     }
+
+    public function demandes()
+    {
+        return $this->hasMany(Demande::class, 'id_partenaire');
+    }
 }

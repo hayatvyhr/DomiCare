@@ -1,17 +1,16 @@
-<div class="mb-5">
+<div class="mb-8">
     <div class="pr-10 pl-10">
         <div class="p-5 shadow-sm flex md:justify-between justify-center">
             <div class="flex items-center gap-8">
                 <a href="/"><img src='/logo.svg' alt='Logo' class="md:inline w-[150px] hidden" /></a>
                 <div class="lg:flex items-center gap-8 hidden font-medium">
-                    <a href="/">
-                        <h2 class="hover:scale-105 hover:text-primary cursor-pointer ">Accueil</h2>
-                    </a>
-                    <a href="/search/plomberie">
-                        <h2 class="hover:scale-105 hover:text-primary cursor-pointer ">Services</h2>
-                    </a>
-                    <h2 class="hover:scale-105 hover:text-primary cursor-pointer ">À propos
-                    </h2>
+                    <a href="/" class="hover:scale-105 hover:text-primary cursor-pointer ">Accueil</a>
+                    <a href="/search/plomberie" class="hover:scale-105 hover:text-primary cursor-pointer ">Services</a>
+                    @auth
+                        <a href="/reservations/onHold"
+                            class="hover:scale-105 hover:text-primary cursor-pointer ">Réservations
+                        </a>
+                    @endauth
                 </div>
             </div>
             <div>

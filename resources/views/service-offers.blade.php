@@ -54,13 +54,23 @@
                         class="bg-primary text-white text-sm leading-6 font-medium py-1 px-3 rounded hover:bg-[#7C3AED]  transition">Chercher</button>
                 </form>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 gap-8 mt-8">
-                @foreach ($services as $service)
-                    @if ($service->is_available)
-                        <x-ServiceOffer.offer-item :service="$service" />
-                    @endif
-                @endforeach
-            </div>
+            @if ($services->isNotEmpty())
+                <div class="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 gap-8 mt-8">
+                    @foreach ($services as $service)
+                        @if ($service->is_available)
+                            <x-ServiceOffer.offer-item :service="$service" />
+                        @endif
+                    @endforeach
+                </div>
+            @else
+                <div class="flex gap-16 items-center justify-center w-full mt-5">
+                    <img src="/no_results_v2.jpg" width="400" height="400" />
+                    <div class="flex flex-col gap-2 items-center text-primary">
+                        <i class="fa-solid fa-face-sad-tear text-[60px]"></i>
+                        <h2 class="font-semibold text-[30px]">Aucun service trouvé</h2>
+                    </div>
+                </div>
+            @endif
         </x-navbar>
     </body>
 

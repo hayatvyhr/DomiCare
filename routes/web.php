@@ -20,4 +20,8 @@ Route::get('/search/{category:nom}', [CategoryController::class, "showCategory"]
 Route::get('/search/{category:nom}/{intervention:nom}', [ServiceController::class, "showService"]);
 
 //* Booking controller
-Route::get('/search/{category:nom}/{intervention:nom}/{service}', [BookingController::class, "showReservation"])->middleware('mustBeLoggedIn');
+Route::get('/search/{category:nom}/{intervention:nom}/{service}', [BookingController::class, "showBookingForm"])->middleware('mustBeLoggedIn');
+Route::post('/reserver', [BookingController::class, "reserver"])->middleware('mustBeLoggedIn');
+Route::get('/reservations/{etat}', [BookingController::class, "showReservations"])->middleware('mustBeLoggedIn');
+Route::post('/supprimer', [BookingController::class, "supprimerReservation"])->middleware('mustBeLoggedIn');
+Route::post('/commenter', [BookingController::class, "commenterService"]);

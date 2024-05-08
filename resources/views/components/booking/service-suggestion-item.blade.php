@@ -9,26 +9,26 @@
         <div class="flex gap-4">
             <div class="flex gap-2 items-center text-primary text-opacity-85 font-bold">
                 <i class="fa-solid fa-clipboard-list"></i>
-                <h2>{{ $service->nb_demandes }}</h2>
+                <h2>{{ $service->demandes->count() }}</h2>
             </div>
             <div class="flex gap-2 items-center text-primary text-opacity-85 font-bold">
                 <i class="fa-solid fa-comment"></i>
-                <h2>{{ $service->nb_commentaires }}</h2>
+                <h2>{{ $service->commentaires->count() }}</h2>
             </div>
         </div>
         <div class="flex items-center gap-1 text-[#FFBF00] text-[13px]">
-            @for ($i = 0; $i < floor($service->rating); $i++)
+            @for ($i = 0; $i < floor($rating = $service->commentaires->count() != 0 ? $service->commentaires->sum('rating') / $service->commentaires->count() : 0); $i++)
                 <i class="fa-solid fa-star"></i>
             @endfor
-            @if ($service->rating - floor($service->rating) >= 0.299)
+            @if ($rating - floor($rating) >= 0.299)
                 <i class="fa-solid fa-star-half-stroke"></i>
             @else
                 <i class="fa-regular fa-star"></i>
             @endif
-            @for ($i = floor($service->rating) + 1; $i < 5; $i++)
+            @for ($i = floor($rating) + 1; $i < 5; $i++)
                 <i class="fa-regular fa-star"></i>
             @endfor
-            <h2 class="text-gray-500 ml-1">({{ $service->rating }})</h2>
+            <h2 class="text-gray-500 ml-1">({{ $rating }})</h2>
         </div>
     </div>
 </a>
