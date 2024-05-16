@@ -32,7 +32,7 @@
             <i class="fa-regular fa-star"></i>
         @endfor
         <h2 class="text-gray-500 ml-1">
-            ({{ $rating }})
+            ({{ number_format($rating, 2, '.', ',') }})
         </h2>
     </div>
     <h2

@@ -10,6 +10,7 @@ class Demande extends Model
     use HasFactory;
     protected $table = 'demande';
 
+    protected $primaryKey = 'id_demande';
     public $timestamps = false;
 
     protected $fillable = [

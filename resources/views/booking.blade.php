@@ -30,7 +30,7 @@
                         <h2 class="font-bold text-[25px] mt-8">Comments</h2>
                         <div class="grid lg:grid-cols-2 grid-cols-1 lg:gap-6 gap-4 mt-4">
                             @if ($service->commentaires->isNotEmpty())
-                                @foreach ($service->commentaires as $commentaire)
+                                @foreach ($service->commentaires->where('emetteur', 'client') as $commentaire)
                                     <x-booking.service-comment-item :commentaire="$commentaire" />
                                 @endforeach
                             @else

@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\Demande;
 use App\Models\Service;
 use App\Models\Category;
+use App\Models\Partenaire;
 use App\Models\Commentaire;
 use App\Models\Intervention;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\HelloMail;
+
 
 class BookingController extends Controller
 {
@@ -23,29 +28,42 @@ class BookingController extends Controller
             'id_user' => 'required'
         ]);
 
+        $service = Service::where('id_service', $incomingFields['id_service'])->first();
+        $nb_commentaires = $service->commentaires->count();
         $commentaireRecord = Commentaire::where('id_client', $incomingFields['id_client'])->where('id_service', $incomingFields['id_service'])->first();
+
         if ($commentaireRecord) {
+            $ratingCommentaire = $commentaireRecord->rating;
+            $rating = ($service->commentaires->sum('rating') - $ratingCommentaire + $incomingFields['rating']) / $nb_commentaires;
+            $service->update(['rating' => $rating]);
             $commentaireRecord->update(['commentaire' => $incomingFields['commentaire'], 'rating' => $incomingFields['rating']]);
         } else {
+            $rating = $nb_commentaires != 0 ? ($service->commentaires->sum('rating') + $incomingFields['rating']) / ($nb_commentaires + 1) : $incomingFields['rating'];
+            $service->update(['nb_commentaires' => $nb_commentaires + 1]);
+            $service->update(['rating' => $rating]);
             Commentaire::create($incomingFields);
         }
         return redirect()->back()->with('success', 'Votre commentaire a bien été enregisté');
     }
     public function supprimerReservation(Request $request)
     {
-        Demande::where('id_demande', $request->get('id_demande'))->delete();
+        $demande = Demande::where('id_demande', $request->get('id_demande'))->first();
+        $service = $demande->service;
+        $nb_demandes = $service->demandes->count();
+        $service->update(['nb_demandes' => $nb_demandes - 1]);
+        $demande->delete();
         return redirect()->back()->with('success', 'La réservation a bien été supprimé.');
     }
     public function showReservations($etat)
     {
         if ($etat == 'onHold') {
-            $demandes =  auth()->user()->client->demandes()->where('etat', NULL)->get();
+            $demandes =  auth()->user()->client->demandes()->where('etat', NULL)->get()->sortByDesc('id_demande');
         } elseif ($etat == 'accepted') {
-            $demandes =  auth()->user()->client->demandes()->where('etat', 'accepted')->get();
+            $demandes =  auth()->user()->client->demandes()->where('etat', 'accepted')->get()->sortByDesc('id_demande');
         } elseif ($etat == 'refused') {
-            $demandes =  auth()->user()->client->demandes()->where('etat', 'refused')->get();
+            $demandes =  auth()->user()->client->demandes()->where('etat', 'refused')->get()->sortByDesc('id_demande');
         } elseif ($etat == 'completed') {
-            $demandes =  auth()->user()->client->demandes()->where('etat', 'completed')->get();
+            $demandes =  auth()->user()->client->demandes()->where('etat', 'completed')->get()->sortByDesc('id_demande');
         } else {
             return redirect()->back();
         }
@@ -87,7 +105,38 @@ class BookingController extends Controller
 
         Demande::create([...$incomingFields, 'prix_total' => $prix_total]);
 
-        return redirect()->back()->with('success', 'La réservation a bien été enregisté.');
+        $nb_demandes = $service->demandes->count();
+
+        $service->update(['nb_demandes' => $nb_demandes + 1]);
+
+        // Retrieve client information
+        $client = Client::findOrFail($incomingFields['id_client']);
+        $clientNom = $client->nom;
+        $clientPrenom = $client->prenom;
+        $clientEmail = $client->email;
+
+        // Retrieve partner information
+        $partenaire = Partenaire::findOrFail($incomingFields['id_partenaire']);
+        $partenaireEmail = $partenaire->email;
+        $partenaireNom = $partenaire->nom;
+        $partenairePrenom = $partenaire->prenom;
+
+        // Send email to partner
+        Mail::to($partenaireEmail)->send(new HelloMail([
+            'emailType' => 'confirm',
+            'clientNom' => $clientNom,
+            'clientPrenom' => $clientPrenom,
+            'clientEmail' => $clientEmail,
+            'partenaireNom' => $partenaireNom,
+            'partenairePrenom' => $partenairePrenom,
+            'demande' => $demande,
+            'duree' => $incomingFields['duree'],
+            'date_reservation' => $incomingFields['date_reservation'],
+            'prix_total' => $prix_total,
+
+        ]));
+
+        return redirect()->back()->with('success', 'La réservation a bien été enregisté. Un mail est envoyé au partenaire.');
     }
 
     public function showBookingForm(Category $category, Intervention $intervention, Service $service)

@@ -1,0 +1,52 @@
+.details {
+    padding: 20px; /* Add padding inside the div */
+    margin: 20px 0; /* Add margin at the top and bottom to separate from other content */
+    border-radius: 10px; /* Rounded corners for a smoother look */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.tableHeader {
+    text-align: center; /* Center align the header text */
+    margin-bottom: 15px; /* Additional space below the header */
+}
+
+table {
+    width: 90%; /* Adjust the width to avoid stretching */
+    border-collapse: collapse; /* Prevent double borders */
+    border: 2px solid var(--blue); /* Border around the table */
+    margin: 0 auto; /* Center the table horizontally */
+}
+
+th,
+td {
+    padding: 10px; /* Padding for readability */
+    text-align: left; /* Align text to the left */
+    white-space: nowrap; /* Prevent line breaks */
+}
+
+th {
+    background-color: var(--blue); /* Header background color */
+    color: var(--white); /* White text for contrast */
+    font-size: 15px; /* Font size for table headers */
+}
+
+tr {
+    border-bottom: 1px solid var(--gray); /* Border between rows */
+}
+
+tr:hover {
+    background-color: var(--blue); /* Change background on hover */
+    color: var(--white); /* Change text color on hover */
+}
+
+button {
+    border: none;
+    color: var(--white); /* Button text color */
+    padding: 5px 10px; /* Padding for button */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Hover effect */
+}
+
+button:hover {
+    background-color: darkred; /* Change button color on hover */
+}

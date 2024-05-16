@@ -3,6 +3,7 @@ flatpickr(".calendar", {
     enableTime: true,
     altInput: true,
     altFormat: "F j, Y (h:S K)",
+    minuteIncrement: 1,
     minDate: new Date(),
 });
 
