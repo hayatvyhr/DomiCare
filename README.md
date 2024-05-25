@@ -1,66 +1,55 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+This Laravel project is designed to connect clients with service providers such as plumbers and gardeners. It offers a seamless platform for partners to manage their services and interact with clients. The main features of the application include:
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Service Provider Features:
 
-## About Laravel
+Registration and Login: Service providers can create accounts and log in to the system.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Add New Services: Providers can add new services they offer, including descriptions and pricing.
+![image](https://github.com/hayatvyhr/DomiCare/assets/122895256/a2aee71a-98cf-426f-9797-e4647c2951ef)
+![image](https://github.com/hayatvyhr/DomiCare/assets/122895256/04468312-6a8e-4256-9f89-ea55e103e3d8)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Manage Requests: Service providers can view all service requests from clients, with the ability to accept or decline them.
+![image](https://github.com/hayatvyhr/DomiCare/assets/122895256/5c93a0e9-297b-43e6-a2f9-353b9d698af4)
+Feedback and Comments: After completing a job, providers can leave comments about the client they worked with, which helps in maintaining a transparent service quality system.
+![image](https://github.com/hayatvyhr/DomiCare/assets/122895256/d4af812c-b40b-41c1-86e0-c2ffea1c44f4)
+Service providers can visualize various statistics, such as the number of services provided, client feedback, and overall performance metrics.
+![image](https://github.com/hayatvyhr/DomiCare/assets/122895256/6c3b3b82-8028-4ead-bf36-dbe50590e432)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Admin 
+Administrative Features:
 
-## Learning Laravel
+Admins can oversee the entire platform, manage user accounts, monitor service requests, and ensure compliance with platform policies.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## client 
+User Authentication:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Clients can register and log in to the platform.
+Service Requests:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Clients can request services from available service providers (plumbers or gardeners).
+Request Management:
 
-## Laravel Sponsors
+Clients can view the status of their requests and receive real-time updates.
+Feedback and Comments:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+After a service is completed, clients can comment on the service provider's performance.
+Service Management:
 
-### Premium Partners
+Clients can delete a service request if needed.
+Quality Assessment:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Clients can view comments and reviews left by other clients about a service provider to assess the quality of their services.
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+video presenting app : https://drive.google.com/file/d/1xZrd2IaSolG4EDHTE3uzlLEW400RHE_R/view
+- *Partenaire*
+  - Nom d'utilisateur : hayat
+  - Mot de passe : 123456789
 
-## Code of Conduct
+- *Client*
+  - Nom d'utilisateur : amin
+  - Mot de passe : 123456789
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- *Admin*
+  - Nom d'utilisateur : admin
+  - Mot de passe : admin
